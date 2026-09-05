@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://отзыв.com/reviews/">
+<meta name="description" content="Прототип публичной структуры отзывов Отзыв.com: человекочитаемый HTML, происхождение данных и машинная читаемость.">
+<title>Отзывы — HTML-прототип | Отзыв.com</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f7f8fa;color:#101828;font-family:Inter,system-ui,sans-serif;line-height:1.55}.wrap{width:min(900px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid #e5e7eb}.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:22px;font-weight:900;letter-spacing:-.05em}.brand span{font-weight:500;color:#667085}.back{font-size:14px;color:#475467}.hero{padding:60px 0 34px}.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;color:#667085}.hero h1{font-size:clamp(38px,7vw,64px);line-height:1;letter-spacing:-.06em;margin:12px 0 18px}.lead{font-size:19px;color:#475467;max-width:720px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:26px;margin-bottom:16px}.card h2{margin:0 0 10px}.card p{color:#667085}.schema{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.item{padding:15px;border:1px solid #eaecf0;border-radius:14px}.item b{display:block;margin-bottom:4px}.item span{font-size:14px;color:#667085}.review-template{border-left:4px solid #101828}.meta{display:flex;gap:12px;flex-wrap:wrap;font-size:14px;color:#667085}.meta strong{color:#101828}.review-text{font-size:17px}.provenance{border-top:1px solid #eaecf0;padding-top:14px;font-size:13px;color:#667085}.links{display:flex;gap:10px;flex-wrap:wrap}.links a{padding:10px 14px;border:1px solid #d0d5dd;border-radius:10px;color:#101828;text-decoration:none}@media(max-width:650px){.schema{grid-template-columns:1fr}.hero{padding-top:42px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="https://отзыв.com/">отзыв<span>.com</span></a><a class="back" href="https://yumis84.github.io/otzovik/">На главную →</a></div></header>
+<main>
+<section class="hero"><div class="wrap"><div class="kicker">ПРОТОТИП ПУБЛИЧНОГО ОТЗЫВА</div><h1>Отзывы должны быть понятны и человеку, и машине.</h1><p class="lead">Эта отдельная страница фиксирует будущую публичную модель: опубликованный отзыв является обычным HTML-контентом, имеет стабильный идентификатор, дату, оценку, компанию и происхождение данных. JavaScript не является обязательным условием для чтения текста.</p></div></section>
+<section><div class="wrap">
+<article class="card review-template" id="review-template" data-review-id="REPLACE_WITH_STABLE_REVIEW_ID">
+<div class="meta"><strong>Имя или псевдоним автора</strong><span>Оценка: 1–5 из 5</span><time datetime="2026-09-05">Дата публикации</time></div>
+<h2>Текст опубликованного отзыва</h2>
+<p class="review-text">В рабочем профиле здесь будет полный разрешённый текст реального отзыва. На прототипе реальные и вымышленные отзывы не используются.</p>
+<div class="provenance"><b>Происхождение:</b> Отзыв.com · стабильный ID отзыва · при наличии подтверждённый филиал/услуга · для внешнего источника — источник и разрешённая ссылка.</div>
+</article>
+<div class="card"><h2>Сейчас опубликованных отзывов нет</h2><p>Шаблон выше описывает DOM-структуру, но не является отзывом. Настоящая карточка появится только после защищённой подачи, модерации и разрешения на публикацию.</p></div>
+<div class="card"><h2>Машинная доступность</h2><div class="schema"><div class="item"><b>HTML</b><span>Полный текст и ключевые поля доступны в HTTP-ответе.</span></div><div class="item"><b>Semantic HTML</b><span>section, article, header, time, footer и явные поля происхождения.</span></div><div class="item"><b>JSON-LD</b><span>Дополнительная структурированная разметка, синхронная с видимым HTML.</span></div><div class="item"><b>Markdown / JSON</b><span>Дополнительные machine-readable представления профиля и отзывов.</span></div></div></div>
+<div class="card"><h2>Пилот Ортомедии</h2><p>Текущий визуальный профиль остаётся основным тестовым стендом. Отдельный шаблон опубликованного отзыва подготовлен в его репозитории.</p><div class="links"><a href="https://yumis84.github.io/ortomediya/profile.html#own">Раздел отзывов профиля</a><a href="https://yumis84.github.io/ortomediya/published-review-template-v1.html">HTML-шаблон отзыва</a></div></div>
+</div></section>
+</main>
+</body>
+</html>
