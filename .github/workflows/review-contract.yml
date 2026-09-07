@@ -1,0 +1,21 @@
+name: Published review contract
+
+on:
+  push:
+    branches:
+      - prototype/review-list-v3
+  pull_request:
+    branches:
+      - prototype/review-list-v3
+
+permissions:
+  contents: read
+
+jobs:
+  review-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate public review boundary
+        run: python3 reviews/ortomediya/review-contract-check.py reviews/ortomediya/index.html
