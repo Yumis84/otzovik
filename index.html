@@ -18,22 +18,25 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://отзыв.com/#website",
-  "url": "https://отзыв.com/",
-  "name": "Отзыв.com",
-  "alternateName": "Отзовик",
-  "description": "Независимые структурированные профили компаний для пользователей, поисковых систем и AI-агентов.",
-  "inLanguage": "ru-RU",
-  "publisher": {"@type":"Organization","@id":"https://отзыв.com/#organization"}
-},
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "@id":"https://отзыв.com/#organization",
-  "name":"Отзыв.com",
-  "url":"https://отзыв.com/",
-  "description":"Сервис структурированных профилей компаний с указанием происхождения репутационных данных для пользователей, поисковых систем и AI-систем."
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://отзыв.com/#website",
+      "url": "https://отзыв.com/",
+      "name": "Отзыв.com",
+      "alternateName": "Отзовик",
+      "description": "Независимые структурированные профили компаний для пользователей, поисковых систем и AI-агентов.",
+      "inLanguage": "ru-RU",
+      "publisher": {"@id": "https://отзыв.com/#organization"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://отзыв.com/#organization",
+      "name": "Отзыв.com",
+      "url": "https://отзыв.com/",
+      "description": "Сервис структурированных профилей компаний с указанием происхождения репутационных данных для пользователей, поисковых систем и AI-систем."
+    }
+  ]
 }
 </script>
 <title>Отзовик — репутация компаний для эпохи AI</title>
