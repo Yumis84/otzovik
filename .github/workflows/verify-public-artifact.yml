@@ -9,40 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and inspect public-only artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p _site
-          for file in index.html 404.html favicon.svg robots.txt sitemap.xml llms.txt CNAME; do
-            test -s "$file"
-            cp -- "$file" "_site/$file"
-          done
-          for dir in about add ai business contacts methodology privacy reviews terms; do
-            test -s "$dir/index.html"
-            mkdir -p "_site/$dir"
-            cp -- "$dir/index.html" "_site/$dir/index.html"
-          done
-          for file in reviews/moderation.html reviews/moderation.css; do
-            test -s "$file"
-            cp -- "$file" "_site/$file"
-          done
-          test ! -e _site/docs
-          test ! -e _site/.github
-          test ! -e _site/reviews/README.md
-          if find _site -type f \( -name '*.sql' -o -name '.env*' -o -name '*.key' -o -name '*.pem' -o -name '*.md' -o -name '*.yml' -o -name '*.yaml' \) | grep -q .; then
-            echo "Unexpected internal file in public artifact"
-            exit 1
-          fi
-          python3 - <<'PY'
-          from pathlib import Path
-          import xml.etree.ElementTree as ET
-          root = Path("_site")
-          ET.parse(root / "sitemap.xml")
-          assert "Sitemap:" in (root / "robots.txt").read_text()
-          pages = list(root.rglob("index.html"))
-          assert len(pages) == 10, f"Unexpected index page count: {len(pages)}"
-          assert (root / "reviews/moderation.html").is_file()
-          assert (root / "reviews/moderation.css").is_file()
-          print(f"PASS: {len(pages)} public index pages, no internal files")
-          PY
+      - name: Build and inspect public artifact
+        run: python3 scripts/build_public_site.py
