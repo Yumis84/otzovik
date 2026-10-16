@@ -1,6 +1,6 @@
 # Moscow migration release runbook (DRAFT)
 
-Scope: otzyv.com apex/www, cabinet, and wildcard public profiles. This document is a proposal only. No production deployment is authorized.
+Scope: отзыв.com (xn--b1ajuq0c.com) apex/www, cabinet, and wildcard public profiles. This document is a proposal only. No production deployment is authorized.
 
 ## Preconditions
 
@@ -41,3 +41,12 @@ Use a dedicated application directory, for example /srv/otzovik/releases/<releas
 - Supabase Auth redirect changes require separate approval.
 - Profile publication and cabinet release integration require independent review.
 - Production writes, deployment, main merges and DNS cutover are prohibited until explicit approval.
+
+## Mandatory cutover gates from independent review
+
+- Plan DNS TTL reduction at least 48 hours before the cutover; verify DS/DNSSEC at the registrar before changing authoritative NS. DNS caches can outlive a rollback, so reverting NS is not an instant recovery mechanism.
+- Keep the old hosting path available during the stabilization window (target 14 days) and test a canary staging hostname before changing production DNS.
+- Supabase Auth: add and test new redirect URLs on staging before cutover, preserve existing redirect URLs during transition, and expect users to sign in again after the origin changes. Any production Auth configuration requires separate approval.
+- Maintain three independent immutable release tracks and current pointers: apex, cabinet, and public profiles. Roll back one component without rolling back the others.
+- Preserve the existing Kaliningrad Apache vhosts and certificates. Compare httpd -S and representative responses before and after any future approved deployment.
+- Require independent smoke checks for wildcard profiles, inactive/tombstone 410 routes, canonical URLs, security headers and cabinet authentication.
