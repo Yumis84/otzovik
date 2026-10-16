@@ -33,8 +33,14 @@ jobs:
             cp -- "$file" "_site/$file"
           done
           for dir in about add ai business contacts methodology privacy reviews terms; do
-            test -d "$dir"
-            cp -R -- "$dir" "_site/$dir"
+            test -f "$dir/index.html"
+            mkdir -p "_site/$dir"
+            cp -- "$dir/index.html" "_site/$dir/index.html"
+          done
+          # Explicit additional public assets; do not copy README or internal files.
+          for file in reviews/moderation.html reviews/moderation.css; do
+            test -f "$file"
+            cp -- "$file" "_site/$file"
           done
           # Refuse to publish repository internals even if added inside a public directory.
           if find _site -type f \( -name '*.sql' -o -name '.env*' -o -name '*.key' -o -name '*.pem' -o -name '*.md' -o -name '*.yml' -o -name '*.yaml' \) | grep -q .; then
