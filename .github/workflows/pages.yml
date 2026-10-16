@@ -23,12 +23,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build public-only artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          for file in index.html 404.html favicon.svg robots.txt sitemap.xml llms.txt CNAME; do
+            test -f "$file"
+            cp -- "$file" "_site/$file"
+          done
+          for dir in about add ai business contacts methodology privacy reviews terms; do
+            test -d "$dir"
+            cp -R -- "$dir" "_site/$dir"
+          done
+          # Refuse to publish repository internals even if added inside a public directory.
+          if find _site -type f \( -name '*.sql' -o -name '.env*' -o -name '*.key' -o -name '*.pem' -o -name '*.md' -o -name '*.yml' -o -name '*.yaml' \) | grep -q .; then
+            echo "Unexpected source or sensitive file in public artifact"
+            exit 1
+          fi
+          test ! -e _site/.git
+          test ! -e _site/docs
+          test ! -e _site/.github
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Upload site
+      - name: Upload public-only site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
